@@ -1,6 +1,12 @@
 import sys
 import subprocess
 
+#exit if number of run parameters are not matched
+
+if len(sys.argv)<=4:
+	exit("Not enough run parameters.")
+
+
 # this is a test comment to check if sftp edit working
 
 barcode_dict = {}
@@ -9,6 +15,7 @@ barcode_dict = {}
 plate_l = sys.argv[1]
 r1 = sys.argv[2]
 r2 = sys.argv[3]
+out_f = sys.argv[4]
 
 
 print(f'Staring run with Plate layout: {plate_l}, Read names: {r1}, {r2}')
@@ -22,19 +29,19 @@ demux_barcodes = ['sample_name,i7,i5,i1']
 with open(plate_l,'r') as sws:
 	for sw in sws:
 		sw = sw.strip('\n')
-		#demux_barcodes.append(f'{barcode_dict.get(sw)}\t{sw}_R1.fastq.gz\t{sw}_R2.fastq.gz')
 		demux_barcodes.append(f'{sw},,,{barcode_dict.get(sw)}')
 
 with open('idemux_formatted.csv','w') as t:
 	t.write('\n'.join(demux_barcodes))
 
 
-print('==Format for idemux\n==')
+print('==Format for idemux==\n=')
 print('\n'.join(demux_barcodes))
 print('Starting idemux run')
 
+cmd = f'idemux --r1  {r1} --r2 { r2} --sample-sheet idemux_formatted.csv --out {out_f} --i1-start 1'
 
-subprocess.call(['idemux','--r1', r1,'--r2', r2,' --sample-sheet idemux_formatted.csv',' --out demuxed',' --i1-start 1'])
+subprocess.call([cmd], shell = True)
 
 
 #TODO
