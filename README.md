@@ -8,7 +8,7 @@
 ## Usage
 
 ``` sh
-python3 qiaseq_upxome_demux.py sample_wells.txt R1.fastq.gz R2.fastq.gz 
+python3 qiaseq_upxome_demux.py sample_wells.txt R1.fastq.gz R2.fastq.gz output_folder 
 ```
 
 ## TODO
