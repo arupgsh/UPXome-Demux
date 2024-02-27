@@ -1,5 +1,7 @@
 # UPXome Demux
 
+This is a script to demultiplex the [QIAseq 3' UPxome RNA Library](https://www.qiagen.com/us/products/discovery-and-translational-research/next-generation-sequencing/rna-sequencing/ultraplex/qiaseq-upxome-rna-library-kits) fastq files without using the QIAGEN online server. Contributions are welcome.
+
 ## Dependencies
 
  - idemux,cutadapt Python package
